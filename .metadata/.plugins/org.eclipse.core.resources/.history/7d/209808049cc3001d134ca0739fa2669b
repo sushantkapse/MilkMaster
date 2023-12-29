@@ -1,0 +1,10 @@
+<%@include file="connection.jsp"%>
+
+<%
+	int id = Integer.parseInt(request.getParameter("id"));
+	String name = request.getParameter("name");
+	String gender = request.getParameter("gender");
+	String email = request.getParameter("email");
+	String phone = request.getParameter("phone");
+	float salary = Float.parseFloat(request.getParameter("salary"));
+	

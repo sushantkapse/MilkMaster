@@ -1,0 +1,33 @@
+<%@include file="connection.jsp"%>
+
+<%
+	String cdate = request.getParameter("cdate");
+	String fid = request.getParameter("fid");
+	String type = request.getParameter("type");
+	String qty = request.getParameter("qty");
+	String when = request.getParameter("when");
+
+%>
+<?php
+	include 'db.php';
+
+	$cdate = $_POST['cdate'];
+	$cid = $_POST['cid'];
+	$type = $_POST['type'];
+	$qty = $_POST['qty'];
+	$when = $_POST['when'];
+
+	$sql = "insert into collection(milk_type,qty,collection_date,morning_evening,client_id) values('$type',$qty,'$cdate','$when',$cid)";
+
+	pg_query($con, $sql);
+
+	if($type=='Cow')
+		$sql = "update stock set cow_qty=cow_qty+$qty";
+	else
+		$sql = "update stock set buffalo_qty=buffalo_qty+$qty";
+	
+	pg_query($con, $sql); 
+
+	include 'collection.php';
+?>
+

@@ -1,0 +1,50 @@
+<%@include file="connection.jsp"%>
+
+<%
+	String pdate = request.getParameter("pdate");
+	String fid = request.getParameter("fid");
+
+	String sql = "select * from client_payment where client_id=$cid and payment_date='$cdate'";
+
+	$result = pg_query($con, $sql);
+
+	if($row = pg_fetch_row($result))
+	{
+?>
+<h1>Payment for client <?php echo $cid;?> already done.</h1>
+<?php
+	}
+	else
+	{
+		$sql = "select sum(qty*40) from collection where client_id=$cid and milk_type='Cow' and collection_date='$cdate'";
+
+		$result = pg_query($con, $sql);
+
+		$row = pg_fetch_row($result);
+
+		$amt1 = $row[0];
+
+		$sql = "select sum(qty*50) from collection where client_id=$cid and milk_type='Buffalo' and collection_date='$cdate'";
+
+		$result = pg_query($con, $sql);
+
+		$row = pg_fetch_row($result);
+
+		$amt2 = $row[0];
+
+	
+		$tot = $amt1 + $amt2;
+
+		if($tot>0)
+		{
+			$sql = "insert into client_payment(payment_date, amount, client_id) values('$cdate', $tot, $cid)";
+
+			pg_query($con, $sql);
+		}
+?>
+<h1>Payment done successfully.</h1>
+<?php
+	}
+	include 'footer.php';
+?>
+</body>

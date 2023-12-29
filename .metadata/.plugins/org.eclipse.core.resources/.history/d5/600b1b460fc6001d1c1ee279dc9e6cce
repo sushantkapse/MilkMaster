@@ -1,0 +1,32 @@
+<%@include file="connection.jsp" %>
+
+<%
+	String id = request.getParameter("id");
+	String bdate = request.getParameter("bdate");
+	String cid = request.getParameter("cid");
+	String cqty = request.getParameter("cqty");
+	String bqty = request.getParameter("bqty");
+	String mode = request.getParameter("mode");
+
+	int amt = Integer.parseInt(cqty)*40 + Integer.parseInt(bqty)*50;
+
+	String sql = "insert into customer_bill values("+id+",'"+bdate+"',"+amt+","+cqty+","+bqty+","+cid+",'-','-','-','Pending')";
+
+	con.createStatement().executeUpdate(sql);
+
+	sql = "update stock set cow_qty=cow_qty-"+cqty+", buffalo_qty=buffalo_qty-"+bqty;
+	
+	pg_query($con, $sql); 
+
+	$sql = "select * from customer_bill order by bill_no desc";
+	$result = pg_query($con, $sql);
+
+	$row = pg_fetch_row($result);
+
+	$bno = $row[0];
+
+	$sql = "select bill_no, bill_date, cust_name, cow_qty, buffalo_qty, bill_amt from customer,customer_bill where customer.cust_id = customer_bill.cust_id and bill_no=$bno;";
+
+	$result = pg_query($con, $sql);
+	$row = pg_fetch_row($result);
+%>

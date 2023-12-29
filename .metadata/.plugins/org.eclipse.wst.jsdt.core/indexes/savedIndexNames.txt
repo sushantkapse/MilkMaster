@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+G:\dairymanagement\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1995194548.index
+1631628983.index
+418154142.index
+605530051.index
+227088990.index
+755487085.index
+4002926954.index

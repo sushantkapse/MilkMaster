@@ -1,0 +1,28 @@
+.footer {
+  	position: fixed;
+  	left: 0;
+  	bottom: 0;
+  	width: 100%;
+  	background-color: black;
+  	color: white;
+  	text-align: center;
+}
+
+.header {
+  	overflow: hidden;
+  	background-color: black;
+  	position: fixed; 
+  	left: 0;
+  	top: 0; 
+  	width: 100%; 
+  	color: white;
+}
+
+body, html {
+  	height: 100%;
+	background-image: url("daily-background.jpg");
+	height: 100%;
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+}

@@ -1,0 +1,28 @@
+body {
+  	height: 100%;
+	background-image: url("../images/dairy-background.jpg");
+	height: 100%;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+}
+
+.footer {
+  	position: fixed;
+  	left: 0;
+  	bottom: 0;
+  	width: 100%;
+  	background-color: black;
+  	color: white;
+  	text-align: center;
+}
+
+.header {
+  	overflow: hidden;
+  	background-color: black;
+  	position: fixed; 
+  	left: 0;
+  	top: 0; 
+  	width: 100%; 
+  	color: white;
+}
+
